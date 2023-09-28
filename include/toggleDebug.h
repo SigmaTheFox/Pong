@@ -3,6 +3,6 @@
 
 #include <raylib.h>
 
-void Debug(Vector2, Color);
+bool toggleDebug(bool, Vector2, Color);
 
 #endif // !DEBUG
