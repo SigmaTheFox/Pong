@@ -8,7 +8,7 @@ bool toggleDebug(bool debugOn, Vector2 P1Pos, Color FontColor) {
 
   if (debugOn == true) {
 
-    debugText = malloc(100 * sizeof(char));
+    debugText = malloc(50 * sizeof(char));
 
     sprintf(debugText, "P1 x: %f\nP1 y: %f", P1Pos.x, P1Pos.y);
 
