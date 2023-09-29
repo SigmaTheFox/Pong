@@ -7,6 +7,7 @@
 #include "drawPaddles.h"
 #include "movePaddle.h"
 #include "toggleDebug.h"
+#include "moveBall.h"
 
 int main(int argc, char *argv[]) {
   bool debugOn = false;
@@ -18,13 +19,16 @@ int main(int argc, char *argv[]) {
   Vector2 P2Pos = {(float)SCREEN_WIDTH - PADDLE_SIZE.x - 10,
                    (float)SCREEN_HEIGHT / 2.f - PADDLE_SIZE.y / 2};
   Vector2 BallPos = {(float)SCREEN_WIDTH / 2.f, (float)SCREEN_HEIGHT / 2};
+  int BallDirection = -1;
 
   InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Pong");
   SetTargetFPS(60);
 
   while (!WindowShouldClose()) {
-    P1Pos = movePaddle(1, P1Pos);
-    P2Pos = movePaddle(2, P2Pos);
+    movePaddle(1, &P1Pos);
+    movePaddle(2, &P2Pos);
+
+		moveBall(&BallDirection, &BallPos, P1Pos, P2Pos);
 
     BeginDrawing();
     ClearBackground(BG_COLOR());
@@ -34,7 +38,7 @@ int main(int argc, char *argv[]) {
     drawPaddles(P1Pos, P2Pos);
 
     // Toggle debug text
-    debugOn = toggleDebug(debugOn, P1Pos, SECONDARY_COLOR());
+    toggleDebug(&debugOn, P1Pos, BallPos, SECONDARY_COLOR());
 
     EndDrawing();
   }
