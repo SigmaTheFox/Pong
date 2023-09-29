@@ -2,20 +2,21 @@
 #include "constants.h"
 #include <raylib.h>
 
-void moveBall(int *BallDirection, Vector2 *BallPos, Vector2 P1Pos,
-              Vector2 P2Pos) {
+void moveBall(int *BallDirection, Vector2 *BallPos, Rectangle P1Paddle,
+              Rectangle P2Paddle) {
+  // Move ball Left if direction is -1, else move right
   if (*BallDirection == -1) {
     BallPos->x -= 2.f;
 
-    if (BallPos->y > P1Pos.y && BallPos->y < P1Pos.y + PADDLE_SIZE.y &&
-        BallPos->x <= P1Pos.x + 10 + BALL_RADIUS + PADDLE_SIZE.x / 2) {
+    // Check if ball collided with the player's paddle
+    if (CheckCollisionCircleRec(*BallPos, BALL_RADIUS, P1Paddle)) {
       *BallDirection = 1;
     }
   } else {
     BallPos->x += 2.f;
 
-    if (BallPos->y > P2Pos.y && BallPos->y < P2Pos.y + PADDLE_SIZE.y &&
-        BallPos->x >= P2Pos.x - PADDLE_SIZE.x / 2) {
+    // Check if ball collided with opponent paddle
+    if (CheckCollisionCircleRec(*BallPos, BALL_RADIUS, P2Paddle)) {
       *BallDirection = -1;
     }
   }
