@@ -3,6 +3,6 @@
 
 #include <raylib.h>
 
-void movePaddle(int, Vector2*);
+void movePaddle(int, Vector2 *);
 
 #endif // !DEBUG

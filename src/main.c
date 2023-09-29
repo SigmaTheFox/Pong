@@ -1,13 +1,11 @@
 #include <raylib.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 #include "constants.h"
 #include "drawPaddles.h"
+#include "moveBall.h"
 #include "movePaddle.h"
 #include "toggleDebug.h"
-#include "moveBall.h"
 
 int main(int argc, char *argv[]) {
   bool debugOn = false;
@@ -28,7 +26,7 @@ int main(int argc, char *argv[]) {
     movePaddle(1, &P1Pos);
     movePaddle(2, &P2Pos);
 
-		moveBall(&BallDirection, &BallPos, P1Pos, P2Pos);
+    moveBall(&BallDirection, &BallPos, P1Pos, P2Pos);
 
     BeginDrawing();
     ClearBackground(BG_COLOR());
