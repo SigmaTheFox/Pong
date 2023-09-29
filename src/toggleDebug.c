@@ -15,7 +15,7 @@ void toggleDebug(bool *debugOn, Vector2 P1Pos, Vector2 BallPos,
             (int)P1Pos.x, (int)P1Pos.y, (int)P1Pos.y,
             (int)P1Pos.y + (int)PADDLE_SIZE.y, (int)BallPos.y);
 
-    DrawText(debugText, 0, 0, 20, FontColor);
+    DrawText(debugText, 10, 10, 20, FontColor);
     DrawFPS(SCREEN_WIDTH - 100, 10);
   }
 
