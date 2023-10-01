@@ -12,4 +12,8 @@ extern const Color BG_COLOR();
 extern const Color PRIMARY_COLOR();
 extern const Color SECONDARY_COLOR();
 
+typedef struct {
+  int p1;
+  int p2;
+} PlayerScores;
 #endif // !DEBUG
