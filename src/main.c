@@ -24,6 +24,10 @@ int main(int argc, char *argv[]) {
   SetTargetFPS(60);
   HideCursor();
 
+  // Initialize hit sound
+  InitAudioDevice();
+  Sound HitSound = LoadSound(SFX_PATH "hit.mp3");
+
   // Initialize paddles
   Vector2 P1Pos = {10, (float)SCREEN_HEIGHT / 2.f - PADDLE_SIZE.y / 2};
   Vector2 P2Pos = {(float)SCREEN_WIDTH - PADDLE_SIZE.x - 10,
@@ -33,6 +37,7 @@ int main(int argc, char *argv[]) {
   Vector2 BallPos = {(float)SCREEN_WIDTH / 2, (float)SCREEN_HEIGHT / 2};
   Vector2 BallDirection = {0, GetRandomValue(0, 1)};
   int BallSpeed = GetRandomValue(1, 3);
+  float Bounces = .0f;
 
   // Initialize score
   PlayerScores Score = {0, 0};
@@ -56,7 +61,7 @@ int main(int argc, char *argv[]) {
       EndDrawing();
 
       if (IsKeyPressed(KEY_SPACE)) {
-        resetBall(&BallPos, &BallDirection, &BallSpeed);
+        resetBall(&BallPos, &BallDirection, &BallSpeed, &Bounces);
         P1Pos.y = (float)SCREEN_HEIGHT / 2.f - PADDLE_SIZE.y / 2;
         P2Pos.y = (float)SCREEN_HEIGHT / 2.f - PADDLE_SIZE.y / 2;
         Score.p1 = 0;
@@ -75,12 +80,13 @@ int main(int argc, char *argv[]) {
     Rectangle P1Paddle = {P1Pos.x, P1Pos.y, PADDLE_SIZE.x, PADDLE_SIZE.y};
     Rectangle P2Paddle = {P2Pos.x, P2Pos.y, PADDLE_SIZE.x, PADDLE_SIZE.y};
 
-    moveBall(&BallDirection, &BallPos, &BallSpeed, P1Paddle, P2Paddle);
+    moveBall(&BallDirection, &BallPos, &BallSpeed, P1Paddle, P2Paddle, HitSound,
+             &Bounces);
 
     // Check if a player scored, if yes, reset the ball position
     // and generate a new direction and speed for it
     if (checkScore(BallPos, &Score, &Playing, &Winner) == true) {
-      resetBall(&BallPos, &BallDirection, &BallSpeed);
+      resetBall(&BallPos, &BallDirection, &BallSpeed, &Bounces);
       P1Pos.y = (float)SCREEN_HEIGHT / 2.f - PADDLE_SIZE.y / 2;
       P2Pos.y = (float)SCREEN_HEIGHT / 2.f - PADDLE_SIZE.y / 2;
     }
@@ -101,6 +107,9 @@ int main(int argc, char *argv[]) {
 
     EndDrawing();
   }
+
+  UnloadSound(HitSound);
+  CloseAudioDevice();
   CloseWindow();
 
   return 0;

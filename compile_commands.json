@@ -1,26 +1,62 @@
 [
 {
   "directory": "/home/Sigma/Code/C/raylib/Pong/build",
-  "command": "/usr/bin/cc  -isystem /home/Sigma/Code/C/raylib/Pong/include -g -std=gnu99 -o CMakeFiles/Pong.dir/src/constants.c.o -c /home/Sigma/Code/C/raylib/Pong/src/constants.c",
+  "command": "/usr/bin/cc -DSFX_PATH=\\\"./sfx/\\\" -isystem /home/Sigma/Code/C/raylib/Pong/include -std=gnu99 -o CMakeFiles/Pong.dir/src/checkScore.c.o -c /home/Sigma/Code/C/raylib/Pong/src/checkScore.c",
+  "file": "/home/Sigma/Code/C/raylib/Pong/src/checkScore.c",
+  "output": "CMakeFiles/Pong.dir/src/checkScore.c.o"
+},
+{
+  "directory": "/home/Sigma/Code/C/raylib/Pong/build",
+  "command": "/usr/bin/cc -DSFX_PATH=\\\"./sfx/\\\" -isystem /home/Sigma/Code/C/raylib/Pong/include -std=gnu99 -o CMakeFiles/Pong.dir/src/constants.c.o -c /home/Sigma/Code/C/raylib/Pong/src/constants.c",
   "file": "/home/Sigma/Code/C/raylib/Pong/src/constants.c",
   "output": "CMakeFiles/Pong.dir/src/constants.c.o"
 },
 {
   "directory": "/home/Sigma/Code/C/raylib/Pong/build",
-  "command": "/usr/bin/cc  -isystem /home/Sigma/Code/C/raylib/Pong/include -g -std=gnu99 -o CMakeFiles/Pong.dir/src/debug.c.o -c /home/Sigma/Code/C/raylib/Pong/src/debug.c",
-  "file": "/home/Sigma/Code/C/raylib/Pong/src/debug.c",
-  "output": "CMakeFiles/Pong.dir/src/debug.c.o"
+  "command": "/usr/bin/cc -DSFX_PATH=\\\"./sfx/\\\" -isystem /home/Sigma/Code/C/raylib/Pong/include -std=gnu99 -o CMakeFiles/Pong.dir/src/drawGameOver.c.o -c /home/Sigma/Code/C/raylib/Pong/src/drawGameOver.c",
+  "file": "/home/Sigma/Code/C/raylib/Pong/src/drawGameOver.c",
+  "output": "CMakeFiles/Pong.dir/src/drawGameOver.c.o"
 },
 {
   "directory": "/home/Sigma/Code/C/raylib/Pong/build",
-  "command": "/usr/bin/cc  -isystem /home/Sigma/Code/C/raylib/Pong/include -g -std=gnu99 -o CMakeFiles/Pong.dir/src/main.c.o -c /home/Sigma/Code/C/raylib/Pong/src/main.c",
+  "command": "/usr/bin/cc -DSFX_PATH=\\\"./sfx/\\\" -isystem /home/Sigma/Code/C/raylib/Pong/include -std=gnu99 -o CMakeFiles/Pong.dir/src/drawPaddles.c.o -c /home/Sigma/Code/C/raylib/Pong/src/drawPaddles.c",
+  "file": "/home/Sigma/Code/C/raylib/Pong/src/drawPaddles.c",
+  "output": "CMakeFiles/Pong.dir/src/drawPaddles.c.o"
+},
+{
+  "directory": "/home/Sigma/Code/C/raylib/Pong/build",
+  "command": "/usr/bin/cc -DSFX_PATH=\\\"./sfx/\\\" -isystem /home/Sigma/Code/C/raylib/Pong/include -std=gnu99 -o CMakeFiles/Pong.dir/src/drawScore.c.o -c /home/Sigma/Code/C/raylib/Pong/src/drawScore.c",
+  "file": "/home/Sigma/Code/C/raylib/Pong/src/drawScore.c",
+  "output": "CMakeFiles/Pong.dir/src/drawScore.c.o"
+},
+{
+  "directory": "/home/Sigma/Code/C/raylib/Pong/build",
+  "command": "/usr/bin/cc -DSFX_PATH=\\\"./sfx/\\\" -isystem /home/Sigma/Code/C/raylib/Pong/include -std=gnu99 -o CMakeFiles/Pong.dir/src/main.c.o -c /home/Sigma/Code/C/raylib/Pong/src/main.c",
   "file": "/home/Sigma/Code/C/raylib/Pong/src/main.c",
   "output": "CMakeFiles/Pong.dir/src/main.c.o"
 },
 {
   "directory": "/home/Sigma/Code/C/raylib/Pong/build",
-  "command": "/usr/bin/cc  -isystem /home/Sigma/Code/C/raylib/Pong/include -g -std=gnu99 -o CMakeFiles/Pong.dir/src/movePaddle.c.o -c /home/Sigma/Code/C/raylib/Pong/src/movePaddle.c",
+  "command": "/usr/bin/cc -DSFX_PATH=\\\"./sfx/\\\" -isystem /home/Sigma/Code/C/raylib/Pong/include -std=gnu99 -o CMakeFiles/Pong.dir/src/moveBall.c.o -c /home/Sigma/Code/C/raylib/Pong/src/moveBall.c",
+  "file": "/home/Sigma/Code/C/raylib/Pong/src/moveBall.c",
+  "output": "CMakeFiles/Pong.dir/src/moveBall.c.o"
+},
+{
+  "directory": "/home/Sigma/Code/C/raylib/Pong/build",
+  "command": "/usr/bin/cc -DSFX_PATH=\\\"./sfx/\\\" -isystem /home/Sigma/Code/C/raylib/Pong/include -std=gnu99 -o CMakeFiles/Pong.dir/src/movePaddle.c.o -c /home/Sigma/Code/C/raylib/Pong/src/movePaddle.c",
   "file": "/home/Sigma/Code/C/raylib/Pong/src/movePaddle.c",
   "output": "CMakeFiles/Pong.dir/src/movePaddle.c.o"
+},
+{
+  "directory": "/home/Sigma/Code/C/raylib/Pong/build",
+  "command": "/usr/bin/cc -DSFX_PATH=\\\"./sfx/\\\" -isystem /home/Sigma/Code/C/raylib/Pong/include -std=gnu99 -o CMakeFiles/Pong.dir/src/resetBall.c.o -c /home/Sigma/Code/C/raylib/Pong/src/resetBall.c",
+  "file": "/home/Sigma/Code/C/raylib/Pong/src/resetBall.c",
+  "output": "CMakeFiles/Pong.dir/src/resetBall.c.o"
+},
+{
+  "directory": "/home/Sigma/Code/C/raylib/Pong/build",
+  "command": "/usr/bin/cc -DSFX_PATH=\\\"./sfx/\\\" -isystem /home/Sigma/Code/C/raylib/Pong/include -std=gnu99 -o CMakeFiles/Pong.dir/src/toggleDebug.c.o -c /home/Sigma/Code/C/raylib/Pong/src/toggleDebug.c",
+  "file": "/home/Sigma/Code/C/raylib/Pong/src/toggleDebug.c",
+  "output": "CMakeFiles/Pong.dir/src/toggleDebug.c.o"
 }
 ]
