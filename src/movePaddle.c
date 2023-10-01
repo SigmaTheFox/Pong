@@ -18,5 +18,17 @@ void movePaddle(int Player, Vector2 *Paddle) {
           SCREEN_HEIGHT - PADDLE_SIZE.y - (PADDLE_SIZE.x - PADDLE_SPEED))
         Paddle->y -= PADDLE_SPEED;
     }
+  } else if (Player == 2) {
+    if (IsKeyDown(KEY_UP)) {
+      Paddle->y -= PADDLE_SPEED;
+      if (Paddle->y <= (PADDLE_SIZE.x - PADDLE_SPEED))
+        Paddle->y += PADDLE_SPEED;
+    }
+    if (IsKeyDown(KEY_DOWN)) {
+      Paddle->y += PADDLE_SPEED;
+      if (Paddle->y >=
+          SCREEN_HEIGHT - PADDLE_SIZE.y - (PADDLE_SIZE.x - PADDLE_SPEED))
+        Paddle->y -= PADDLE_SPEED;
+    }
   }
 }

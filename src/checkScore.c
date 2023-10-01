@@ -13,10 +13,10 @@ bool checkScore(Vector2 BallPos, PlayerScores *Scores, bool *Playing, int *winne
     Scores->p1 += 1;
   }
 
-	if (Scores->p1 == 1) {
+	if (Scores->p1 == 5) {
 		*Playing = false;
 		*winner = 1;
-	} else if (Scores->p2 == 1) {
+	} else if (Scores->p2 == 5) {
 		*Playing = false;
 		*winner = 2;
 	}

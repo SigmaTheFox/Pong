@@ -3,17 +3,16 @@
 #include <raylib.h>
 #include <stdio.h>
 
-void toggleDebug(bool *debugOn, Vector2 P1Pos, Vector2 BallPos, Vector2 BallDir,
-                 int BallSpeed, Color FontColor) {
+void toggleDebug(bool *debugOn, Vector2 P1Pos, Vector2 P2Pos, Vector2 BallPos,
+                 Vector2 BallDir, int BallSpeed, Color FontColor) {
   char *debugText = MemAlloc(110 * sizeof(char));
 
   // Draw debug text and FPS if debug is enabled
   if (*debugOn == true) {
     sprintf(debugText,
-            "P1 x: %d\nP1 y: %d\nP1 y_max: %d\nP1 y_min: %d\nBall x: %d\nBall "
-            "y: %d\nBall Dir y:%d\nBall Speed: %f",
-            (int)P1Pos.x, (int)P1Pos.y, (int)P1Pos.y,
-            (int)P1Pos.y + (int)PADDLE_SIZE.y, (int)BallPos.x, (int)BallPos.x,
+            "P1 y: %d\nP2 y: %d\nBall x: %d\nBall y: %d\nBall Dir y:%d\nBall "
+            "Speed: %f",
+            (int)P1Pos.y, (int)P2Pos.y, (int)BallPos.x, (int)BallPos.y,
             (int)BallDir.y, .7f * BallSpeed);
 
     DrawText(debugText, 10, 10, 20, FontColor);

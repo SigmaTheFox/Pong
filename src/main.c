@@ -1,10 +1,12 @@
 #include <raylib.h>
+#include <resetBall.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "checkScore.h"
 #include "constants.h"
+#include "drawGameOver.h"
 #include "drawPaddles.h"
 #include "drawScore.h"
 #include "moveBall.h"
@@ -35,65 +37,69 @@ int main(int argc, char *argv[]) {
   // Initialize score
   PlayerScores Score = {0, 0};
   bool Playing = true;
-  int Winner;
+  int Winner = 0;
 
   // Main game loop
   while (!WindowShouldClose()) {
+    // Display the Game Over screen when Playing is false
     if (Playing == false) {
-      char PlayerWin[14];
-      sprintf(PlayerWin, "Player %d Wins", Winner);
-
-      Vector2 PlayerWinSize =
-          MeasureTextEx(GetFontDefault(), PlayerWin, 100, 0);
-
       BeginDrawing();
+
       ClearBackground(BG_COLOR());
 
-      DrawText(PlayerWin, (float)SCREEN_WIDTH / 2 - PlayerWinSize.x / 2 - 50,
-               (float)SCREEN_HEIGHT / 2 - PlayerWinSize.y / 2, 100,
-               SECONDARY_COLOR());
+      drawGameOver(Winner);
 
       // Toggle debug text
-      toggleDebug(&debugOn, P1Pos, BallPos, BallDirection, BallSpeed,
+      toggleDebug(&debugOn, P1Pos, P2Pos, BallPos, BallDirection, BallSpeed,
                   SECONDARY_COLOR());
 
       EndDrawing();
-    } else {
-      // Move paddles and ball before redrawing them
-      movePaddle(1, &P1Pos);
-      movePaddle(2, &P2Pos);
 
-      Rectangle P1Paddle = {P1Pos.x, P1Pos.y, PADDLE_SIZE.x, PADDLE_SIZE.y};
-      Rectangle P2Paddle = {P2Pos.x, P2Pos.y, PADDLE_SIZE.x, PADDLE_SIZE.y};
-
-      moveBall(&BallDirection, &BallPos, &BallSpeed, P1Paddle, P2Paddle);
-
-      // Check if a player scored, if yes, reset the ball position
-      // and generate a new direction and speed for it
-      if (checkScore(BallPos, &Score, &Playing, &Winner) == true) {
-        BallPos.x = (float)SCREEN_WIDTH / 2;
-        BallPos.y = (float)SCREEN_HEIGHT / 2;
-        BallDirection.x = GetRandomValue(0, 1);
-        BallDirection.y = GetRandomValue(0, 2);
-        BallSpeed = GetRandomValue(1, 3);
+      if (IsKeyPressed(KEY_SPACE)) {
+        resetBall(&BallPos, &BallDirection, &BallSpeed);
+        P1Pos.y = (float)SCREEN_HEIGHT / 2.f - PADDLE_SIZE.y / 2;
+        P2Pos.y = (float)SCREEN_HEIGHT / 2.f - PADDLE_SIZE.y / 2;
+        Score.p1 = 0;
+        Score.p2 = 0;
+        Playing = true;
+        Winner = 0;
       }
 
-      // Draw the game
-      BeginDrawing();
-      ClearBackground(BG_COLOR());
-
-      drawScore(Score);
-
-      DrawCircleV(BallPos, BALL_RADIUS, PRIMARY_COLOR());
-
-      drawPaddles(P1Pos, P2Pos);
-
-      // Toggle debug text
-      toggleDebug(&debugOn, P1Pos, BallPos, BallDirection, BallSpeed,
-                  SECONDARY_COLOR());
-
-      EndDrawing();
+      continue;
     }
+
+    // Move paddles and ball before redrawing them
+    movePaddle(1, &P1Pos);
+    movePaddle(2, &P2Pos);
+
+    Rectangle P1Paddle = {P1Pos.x, P1Pos.y, PADDLE_SIZE.x, PADDLE_SIZE.y};
+    Rectangle P2Paddle = {P2Pos.x, P2Pos.y, PADDLE_SIZE.x, PADDLE_SIZE.y};
+
+    moveBall(&BallDirection, &BallPos, &BallSpeed, P1Paddle, P2Paddle);
+
+    // Check if a player scored, if yes, reset the ball position
+    // and generate a new direction and speed for it
+    if (checkScore(BallPos, &Score, &Playing, &Winner) == true) {
+      resetBall(&BallPos, &BallDirection, &BallSpeed);
+      P1Pos.y = (float)SCREEN_HEIGHT / 2.f - PADDLE_SIZE.y / 2;
+      P2Pos.y = (float)SCREEN_HEIGHT / 2.f - PADDLE_SIZE.y / 2;
+    }
+
+    // Draw the game
+    BeginDrawing();
+    ClearBackground(BG_COLOR());
+
+    drawScore(Score);
+
+    DrawCircleV(BallPos, BALL_RADIUS, PRIMARY_COLOR());
+
+    drawPaddles(P1Pos, P2Pos);
+
+    // Toggle debug text
+    toggleDebug(&debugOn, P1Pos, P2Pos, BallPos, BallDirection, BallSpeed,
+                SECONDARY_COLOR());
+
+    EndDrawing();
   }
   CloseWindow();
 
